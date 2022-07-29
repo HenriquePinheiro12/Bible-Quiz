@@ -2,6 +2,7 @@ package com.example.biblequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.*;
 import android.os.Bundle;
@@ -15,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startGameBtn = findViewById(R.id.stratBtn);
+        startGameBtn = findViewById(R.id.startBtn);
     }
 
     public void handleClick(View view){
-
+        Intent it = new Intent(getBaseContext(), Questions.class);
+        startActivity(it);
     }
 }

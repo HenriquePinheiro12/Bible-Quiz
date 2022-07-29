@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Questions">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/app_name"
+        android:textColor="#9C27B0"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="59dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bible_icon" />
+
+    <Button
+        android:id="@+id/answerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:text="@string/responder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/questao"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:text="Questão:" />
+
+    <TextView
+        android:id="@+id/statementText"
+        android:layout_width="334dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="8dp"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="333dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statementText">
+
+        <RadioButton
+            android:id="@+id/rdoBtn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/rdoBtn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/rdoBtn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
