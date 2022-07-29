@@ -2,7 +2,9 @@ package com.example.biblequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.View;
 import android.widget.*;
 import android.os.Bundle;
@@ -11,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button startGameBtn;
 
-    @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

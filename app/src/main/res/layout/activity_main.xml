@@ -24,8 +24,8 @@
         android:id="@+id/imageView"
         android:layout_width="188dp"
         android:layout_height="200dp"
-        android:layout_marginStart="108dp"
         android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/bible_icon" />
@@ -34,11 +34,11 @@
         android:id="@+id/startBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="76dp"
         android:background="#9C27B0"
         android:onClick="handleClick"
         android:text="Jogar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

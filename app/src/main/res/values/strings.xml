@@ -2,4 +2,55 @@
     <string name="app_name">BibleQuizz</string>
     <string name="responder">Responder</string>
     <string name="questao">Questão:</string>
+
+    <string name="stt1"></string>
+    <string name="alt1.1"></string>
+    <string name="alt1.2"></string>
+    <string name="alt1.3"></string>
+
+    <string name="stt2"></string>
+    <string name="alt2.1"></string>
+    <string name="alt2.3"></string>
+    <string name="alt2.2"></string>
+
+    <string name="stt3"></string>
+    <string name="alt3.1"></string>
+    <string name="alt3.3"></string>
+    <string name="alt3.2"></string>
+
+    <string name="stt4"></string>
+    <string name="alt4.1"></string>
+    <string name="alt4.3"></string>
+    <string name="alt4.2"></string>
+
+    <string name="stt5"></string>
+    <string name="alt5.1"></string>
+    <string name="alt5.3"></string>
+    <string name="alt5.2"></string>
+
+    <string name="stt6"></string>
+    <string name="alt6.1"></string>
+    <string name="alt6.3"></string>
+    <string name="alt6.2"></string>
+
+    <string name="stt7"></string>
+    <string name="alt7.1"></string>
+    <string name="alt7.3"></string>
+    <string name="alt7.2"></string>
+
+    <string name="stt8"></string>
+    <string name="alt8.1"></string>
+    <string name="alt8.3"></string>
+    <string name="alt8.2"></string>
+
+    <string name="stt9"></string>
+    <string name="alt9.1"></string>
+    <string name="alt9.3"></string>
+    <string name="alt9.2"></string>
+
+
+    <string name="stt10"></string>
+    <string name="alt10.1"></string>
+    <string name="alt10.3"></string>
+    <string name="alt10.2"></string>
 </resources>
