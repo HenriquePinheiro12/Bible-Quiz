@@ -2,9 +2,7 @@ package com.example.biblequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.view.View;
 import android.widget.*;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleClick(View view){
-        Intent it = new Intent(getBaseContext(), Questions.class);
+        Intent it = new Intent(getBaseContext(), QuestionsActivity.class);
         startActivity(it);
     }
 }

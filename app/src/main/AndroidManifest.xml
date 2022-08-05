@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BibleQuizz">
         <activity
-            android:name=".Questions"
+            android:name=".QuestionsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

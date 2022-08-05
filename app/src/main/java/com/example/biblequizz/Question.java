@@ -22,3 +22,12 @@ public class Question {
     public int answerIndex;
 
 }
+
+
+/*
+*   statement: "",
+*   option1: "",
+*   option2: "",
+*   option3: "",
+*   index
+*/
