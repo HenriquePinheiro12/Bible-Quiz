@@ -5,6 +5,9 @@
         <Alternative text="6 dias"/>
         <Alternative text="1 dia"/>
     </Question>
+
+
+
     <Question statement="Quem foi pai de José?" correctIndex="0">
         <Alternative text="Israel"/>
         <Alternative text="Jerusalém"/>

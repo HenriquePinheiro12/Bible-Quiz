@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
+import android.util.Xml;
 import android.view.View;
 import android.widget.*;
 
@@ -46,7 +47,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
         try {
             questionList = generateQuestionsList();
-//            Toast.makeText(this, questionList.size()+"", Toast.LENGTH_SHORT).show();
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -105,7 +105,9 @@ public class QuestionsActivity extends AppCompatActivity {
                      *  - fix xml parsing - try another logic
                      * */
                     for(int i = 0; i < 3; i++){
-                        parser.next();
+                        do parser.next();
+                        while(parser.getEventType() != XmlResourceParser.START_TAG);
+
                         tagName = parser.getName();
                         if(tagName.equals("Alternative")){
                             alternatives[i] =
@@ -113,12 +115,6 @@ public class QuestionsActivity extends AppCompatActivity {
                         }
                     }
 
-
-
-
-                    Toast.makeText(this, alternatives[0] + ": alt1", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, alternatives[1] + ": alt1", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, alternatives[2] + ": alt1", Toast.LENGTH_SHORT).show();
                     q =
                             new Question(statement,
                                     alternatives[0],
