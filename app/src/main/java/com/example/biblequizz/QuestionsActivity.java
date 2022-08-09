@@ -56,11 +56,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
         QUESTION_COUNT = questionList.size();
 
-        /*
-        * TODO:
-        *  - render questions logic: don´t allow repeating
-        *  - fix xml parsing - try another logic
-        * */
         // renderQuestion();
     }
 
@@ -104,8 +99,11 @@ public class QuestionsActivity extends AppCompatActivity {
                     correctAnswer =
                             Integer.parseInt(parser.getAttributeValue(null, "correctIndex"));
 
-                    // PROBLEM HERE: try another logic!
-                    //
+                    /*
+                     * TODO:
+                     *  - render questions logic: don´t allow repeating
+                     *  - fix xml parsing - try another logic
+                     * */
                     for(int i = 0; i < 3; i++){
                         parser.next();
                         tagName = parser.getName();
