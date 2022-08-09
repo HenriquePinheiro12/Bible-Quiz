@@ -1,5 +1,6 @@
 package com.example.biblequizz;
 
+import androidx.annotation.XmlRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Resources;
@@ -8,7 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -20,7 +26,11 @@ public class QuestionsActivity extends AppCompatActivity {
     RadioGroup radioGroup;
 
     ArrayList<Question> questionList;
-    // XmlResourceParser parser = getResources(R.xml.questions);
+    ArrayList<Integer> drawnIndexes = new ArrayList<>();
+
+    int QUESTION_COUNT;
+
+    Question currentQuestion;
 
 
     @Override
@@ -34,32 +44,96 @@ public class QuestionsActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
 
 
+        try {
+            questionList = generateQuestionsList();
+//            Toast.makeText(this, questionList.size()+"", Toast.LENGTH_SHORT).show();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        questionList = generateQuestionsList();
 
-        final int QUESTION_COUNT = questionList.size();
+        QUESTION_COUNT = questionList.size();
 
-        double drawnNumber = Math.random();
-        renderQuestion ();
-
+        /*
+        * TODO:
+        *  - render questions logic: don´t allow repeating
+        *  - fix xml parsing - try another logic
+        * */
+        // renderQuestion();
     }
 
-    protected void renderQuestion () {
-        statementText.setText(questionList.get(4).statement);
-        int count = radioGroup.getChildCount();
-        ArrayList<RadioButton> listOfRadioButtons = new ArrayList<RadioButton>();
+    protected void renderQuestion() {
+        int drawnIndex = -1;
 
-        for (int i=0;i<count;i++) {
+        do drawnIndex = (int) Math.ceil(Math.random() * QUESTION_COUNT);
+        while(drawnIndexes.contains(drawnIndex));
+
+        drawnIndexes.add(drawnIndex);
+
+        currentQuestion = questionList.get(drawnIndex);
+
+        statementText.setText(currentQuestion.statement);
+        int Rdocount = radioGroup.getChildCount();
+        ArrayList<RadioButton> listOfRadioButtons = new ArrayList<>();
+
+        for (int i=0; i<Rdocount; i++) {
             RadioButton rdoBtn = (RadioButton) radioGroup.getChildAt(i);
-            rdoBtn.setText(questionList.get(4).alternatives[i]);
-
+            rdoBtn.setText(currentQuestion.alternatives[i]);
         }
     }
 
 
-    private ArrayList<Question> generateQuestionsList(){
+    protected ArrayList<Question> generateQuestionsList() throws XmlPullParserException, IOException {
         ArrayList<Question> questionList = new ArrayList<>();
+        String tagName;
+        String statement;
+        int correctAnswer;
+        String[] alternatives = new String[3];
+        XmlResourceParser parser = getResources().getXml(R.xml.questions);
+        Question q;
 
+        while(parser.getEventType() != XmlResourceParser.END_DOCUMENT){
+            if(parser.getEventType() == XmlResourceParser.START_TAG){
+                tagName = parser.getName();
+
+
+                if(tagName.equals("Question")){
+                    statement = parser.getAttributeValue(null, "statement");
+                    correctAnswer =
+                            Integer.parseInt(parser.getAttributeValue(null, "correctIndex"));
+
+                    // PROBLEM HERE: try another logic!
+                    //
+                    for(int i = 0; i < 3; i++){
+                        parser.next();
+                        tagName = parser.getName();
+                        if(tagName.equals("Alternative")){
+                            alternatives[i] =
+                                    parser.getAttributeValue(null, "text");
+                        }
+                    }
+
+
+
+
+                    Toast.makeText(this, alternatives[0] + ": alt1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, alternatives[1] + ": alt1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, alternatives[2] + ": alt1", Toast.LENGTH_SHORT).show();
+                    q =
+                            new Question(statement,
+                                    alternatives[0],
+                                    alternatives[1],
+                                    alternatives[2],
+                                    correctAnswer);
+
+                    questionList.add(q);
+                }
+            }
+
+            parser.next();
+        }
 
 
         return questionList;
