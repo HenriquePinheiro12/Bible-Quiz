@@ -3,6 +3,7 @@ package com.example.biblequizz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -19,7 +20,7 @@ public class QuestionsActivity extends AppCompatActivity {
     RadioGroup radioGroup;
 
     ArrayList<Question> questionList;
-
+    // XmlResourceParser parser = getResources(R.xml.questions);
 
 
     @Override
@@ -59,30 +60,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private ArrayList<Question> generateQuestionsList(){
         ArrayList<Question> questionList = new ArrayList<>();
 
-        Question q1 =
-                new Question("Em quantos dias Deus fez o universo?",
-                            "7 dias", "6 dias", "1 dia", 1);
-        questionList.add(q1);
 
-        Question q2 =
-                new Question("Quem foi pai de José?",
-                        "Israel", "Jerusalém", "Moisés", 0);
-        questionList.add(q2);
-
-        Question q3 =
-                new Question("Quantos anos durou o cativeiro babilônico?",
-                        "400 anos", "40 anos", "70 anos", 2);
-        questionList.add(q3);
-
-        Question q4 =
-                new Question("Quem escreveu o livro de Lamentações?",
-                        "Salomão", "Jeremias", "Davi", 1);
-        questionList.add(q4);
-
-        Question q5 =
-                new Question("Quem escreveu o livro de Lamentações?",
-                        "Salomão", "Jeremias", "Davi", 1);
-        questionList.add(q5);
 
         return questionList;
     }

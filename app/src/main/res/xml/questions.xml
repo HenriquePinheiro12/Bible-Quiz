@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Questions xmlns:android="http://schemas.android.com/apk/res/android">
+    <Question statement="Em quantos dias Deus fez o universo?" correctIndex="1">
+        <Alternative text="7 dias"/>
+        <Alternative text="6 dias"/>
+        <Alternative text="1 dia"/>
+    </Question>
+    <Question statement="Quem foi pai de José?" correctIndex="0">
+        <Alternative text="Israel"/>
+        <Alternative text="Jerusalém"/>
+        <Alternative text="Moisés"/>
+    </Question>
+    <Question statement="Quantos anos durou o cativeiro babilônico?" correctIndex="2">
+        <Alternative text="400 anos"/>
+        <Alternative text="40 anos"/>
+        <Alternative text="70 anos"/>
+    </Question>
+    <Question statement="Quem escreveu o livro de Lamentações?" correctIndex="1">
+        <Alternative text="Salomão"/>
+        <Alternative text="Jeremias"/>
+        <Alternative text="Davi"/>
+    </Question>
+</Questions>
