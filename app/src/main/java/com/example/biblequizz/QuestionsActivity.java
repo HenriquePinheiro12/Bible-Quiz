@@ -23,15 +23,21 @@ public class QuestionsActivity extends AppCompatActivity {
     // layout
     Button answerBtn;
     RadioGroup rdoGroup;
-    TextView statementText;
+    TextView statementText, scoreLbl;
     RadioGroup radioGroup;
+    /*
+    * TODO: add an OnCheckedChange listener on RadioGroup to show "next" button when something is selected
+    * */
+
+
 
     ArrayList<Question> questionList;
-    ArrayList<Integer> drawnIndexes = new ArrayList<>();
+//    ArrayList<Integer> drawnIndexes = new ArrayList<>();
 
-    int QUESTION_COUNT;
+    private int QUESTIONS_COUNT;
 
     Question currentQuestion;
+    private int questionIndex = 0;
 
 
     @Override
@@ -43,42 +49,47 @@ public class QuestionsActivity extends AppCompatActivity {
         rdoGroup = findViewById(R.id.radioGroup);
         statementText = findViewById(R.id.statementText);
         radioGroup = findViewById(R.id.radioGroup);
+        scoreLbl = findViewById(R.id.scoreLbl);
 
+        scoreLbl.setText(Question.getScore() + "");
 
         try {
             questionList = generateQuestionsList();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
 
+        QUESTIONS_COUNT = questionList.size();
 
-        QUESTION_COUNT = questionList.size();
-
-        // renderQuestion();
+        updateQuestion();
     }
 
-    protected void renderQuestion() {
-        int drawnIndex = -1;
-
-        do drawnIndex = (int) Math.ceil(Math.random() * QUESTION_COUNT);
-        while(drawnIndexes.contains(drawnIndex));
-
-        drawnIndexes.add(drawnIndex);
-
-        currentQuestion = questionList.get(drawnIndex);
+    protected void updateQuestion() {
+        currentQuestion = questionList.get(questionIndex);
 
         statementText.setText(currentQuestion.statement);
-        int Rdocount = radioGroup.getChildCount();
-        ArrayList<RadioButton> listOfRadioButtons = new ArrayList<>();
-
-        for (int i=0; i<Rdocount; i++) {
+        int rdoCount = radioGroup.getChildCount();
+        for (int i=0; i < rdoCount; i++) {
             RadioButton rdoBtn = (RadioButton) radioGroup.getChildAt(i);
             rdoBtn.setText(currentQuestion.alternatives[i]);
         }
+        questionIndex++;
+
+        radioGroup.clearCheck();
     }
 
+    protected void checkAnswer(){
+        RadioButton checkedRdo = ( RadioButton) radioGroup.getChildAt(currentQuestion.answerIndex);
+
+        if(checkedRdo.isChecked()){
+            Question.increaseScore();
+            scoreLbl.setText(Question.getScore() + "");
+        }
+    }
+
+    protected void endGame(){
+
+    }
 
     protected ArrayList<Question> generateQuestionsList() throws XmlPullParserException, IOException {
         ArrayList<Question> questionList = new ArrayList<>();
@@ -131,5 +142,14 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         return questionList;
+    }
+
+    public void handleClick(View view) {
+        checkAnswer();
+        if(questionIndex == QUESTIONS_COUNT){
+            endGame();
+            return;
+        }
+        updateQuestion();
     }
 }

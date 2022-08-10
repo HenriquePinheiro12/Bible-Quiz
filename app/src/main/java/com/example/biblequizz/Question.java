@@ -20,7 +20,16 @@ public class Question {
     public String statement;
     public String[] alternatives;
     public int answerIndex;
+    private static int score = 0;
 
+
+    public static void increaseScore() {
+        score++;
+    }
+
+    public static int getScore(){
+        return score;
+    }
 }
 
 

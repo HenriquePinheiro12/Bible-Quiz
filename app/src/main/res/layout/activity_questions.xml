@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
+        android:onClick="handleClick"
         android:text="@string/responder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -54,9 +55,20 @@
         tools:text="Questão:" />
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Pontuação: "
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/statementText"
+        app:layout_constraintEnd_toStartOf="@+id/scoreLbl" />
+
+    <TextView
         android:id="@+id/statementText"
         android:layout_width="334dp"
-        android:layout_height="229dp"
+        android:layout_height="175dp"
         android:layout_marginTop="8dp"
         android:text=""
         android:textSize="16sp"
@@ -92,4 +104,15 @@
             android:layout_height="wrap_content"
             android:text="RadioButton" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/scoreLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/statementText"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
