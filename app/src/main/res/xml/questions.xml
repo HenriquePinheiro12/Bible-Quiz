@@ -5,9 +5,6 @@
         <Alternative text="6 dias"/>
         <Alternative text="1 dia"/>
     </Question>
-
-
-
     <Question statement="Quem foi pai de José?" correctIndex="0">
         <Alternative text="Israel"/>
         <Alternative text="Jerusalém"/>
@@ -22,5 +19,25 @@
         <Alternative text="Salomão"/>
         <Alternative text="Jeremias"/>
         <Alternative text="Davi"/>
+    </Question>
+    <Question statement="Quantos filhos tece Jacó?" correctIndex="2">
+        <Alternative text="12 filhos"/>
+        <Alternative text="11 filhos"/>
+        <Alternative text="13 filhos"/>
+    </Question>
+    <Question statement="Quem foi o primeiro rei de Israel?" correctIndex="2">
+        <Alternative text="Roboão"/>
+        <Alternative text="Davi"/>
+        <Alternative text="Saul"/>
+    </Question>
+    <Question statement="Quantos anos durou o ministério de Jesus?" correctIndex="1">
+        <Alternative text="3 anos"/>
+        <Alternative text="3 anos e meio"/>
+        <Alternative text="2 anos"/>
+    </Question>
+    <Question statement="Onde Abrão morava antes de ser chamado por Deus?" correctIndex="0">
+        <Alternative text="Ur"/>
+        <Alternative text="Egito"/>
+        <Alternative text="Síria"/>
     </Question>
 </Questions>

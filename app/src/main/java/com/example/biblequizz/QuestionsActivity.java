@@ -1,39 +1,25 @@
 package com.example.biblequizz;
 
-import androidx.annotation.XmlRes;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.res.Resources;
+import android.annotation.SuppressLint;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.util.Xml;
 import android.view.View;
 import android.widget.*;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+
 
 public class QuestionsActivity extends AppCompatActivity {
     // layout
     Button answerBtn;
-    RadioGroup rdoGroup;
     TextView statementText, scoreLbl;
     RadioGroup radioGroup;
-    /*
-    * TODO: add an OnCheckedChange listener on RadioGroup to show "next" button when something is selected
-    * */
-
-
 
     ArrayList<Question> questionList;
-//    ArrayList<Integer> drawnIndexes = new ArrayList<>();
-
     private int QUESTIONS_COUNT;
 
     Question currentQuestion;
@@ -46,7 +32,6 @@ public class QuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
 
         answerBtn = findViewById(R.id.answerBtn);
-        rdoGroup = findViewById(R.id.radioGroup);
         statementText = findViewById(R.id.statementText);
         radioGroup = findViewById(R.id.radioGroup);
         scoreLbl = findViewById(R.id.scoreLbl);
@@ -62,6 +47,16 @@ public class QuestionsActivity extends AppCompatActivity {
         QUESTIONS_COUNT = questionList.size();
 
         updateQuestion();
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i > 0) {
+                    answerBtn.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     protected void updateQuestion() {
@@ -76,6 +71,7 @@ public class QuestionsActivity extends AppCompatActivity {
         questionIndex++;
 
         radioGroup.clearCheck();
+        answerBtn.setVisibility(View.GONE);
     }
 
     protected void checkAnswer(){
@@ -88,7 +84,8 @@ public class QuestionsActivity extends AppCompatActivity {
     }
 
     protected void endGame(){
-
+        /* TODO: endGame and learn animations */
+        System.out.println("End game!");
     }
 
     protected ArrayList<Question> generateQuestionsList() throws XmlPullParserException, IOException {
@@ -110,11 +107,6 @@ public class QuestionsActivity extends AppCompatActivity {
                     correctAnswer =
                             Integer.parseInt(parser.getAttributeValue(null, "correctIndex"));
 
-                    /*
-                     * TODO:
-                     *  - render questions logic: don´t allow repeating
-                     *  - fix xml parsing - try another logic
-                     * */
                     for(int i = 0; i < 3; i++){
                         do parser.next();
                         while(parser.getEventType() != XmlResourceParser.START_TAG);
