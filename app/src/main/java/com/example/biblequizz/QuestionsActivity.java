@@ -1,9 +1,12 @@
 package com.example.biblequizz;
 
+import static com.example.biblequizz.R.color.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.XmlResourceParser;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -24,6 +27,8 @@ public class QuestionsActivity extends AppCompatActivity {
     // data
     ArrayList<Question> questionList;
     Question currentQuestion;
+    boolean questionIsChecked = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +112,31 @@ public class QuestionsActivity extends AppCompatActivity {
         return provisoryQuestionList;
     }
 
+    @SuppressLint("ResourceAsColor")
     public void handleClick(View view) {
-        checkAnswer();
-        if(Question.getQuestionIndex() == Question.getQuestionCount()){
-            endGame();
-            return;
+        RadioButton correctRdo = (RadioButton) radioGroup.getChildAt(currentQuestion.getAnswerIndex());
+
+        if(!questionIsChecked){
+            checkAnswer(); // updates score
+            questionIsChecked = true;
+
+            correctRdo.setTypeface(null, Typeface.BOLD);
+            answerBtn.setText("Próximo");
+
+        } else {
+            if(Question.getQuestionIndex() == Question.getQuestionCount()){
+                endGame();
+                return;
+            } else {
+                updateQuestion();
+                questionIsChecked = false;
+                correctRdo.setTypeface(null, Typeface.NORMAL);
+                answerBtn.setText("Responder");
+            }
+
         }
-        updateQuestion();
+
+
     }
 
     protected void checkAnswer(){
@@ -122,8 +145,9 @@ public class QuestionsActivity extends AppCompatActivity {
         if(checkedRdo.isChecked()){
             Question.increaseScore();
             scoreLbl.setText(Question.getScore() + "");
-            System.out.println("SCORE: "+ Question.getScore());
         }
+
+        /* TODO: highlight correct answer */
     }
 
     protected void updateQuestion() {
