@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BibleQuizz">
         <activity
+            android:name=".EndGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuestionsActivity"
             android:exported="false" />
         <activity

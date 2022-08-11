@@ -15,42 +15,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-
 public class QuestionsActivity extends AppCompatActivity {
     // layout
     Button answerBtn;
     TextView statementText, scoreLbl, questionsCountLbl;
     RadioGroup radioGroup;
 
+    // data
     ArrayList<Question> questionList;
     Question currentQuestion;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
+        // COMPONENTS
         answerBtn = findViewById(R.id.answerBtn);
         statementText = findViewById(R.id.statementText);
         radioGroup = findViewById(R.id.radioGroup);
-        scoreLbl = findViewById(R.id.scoreLbl);
-        questionsCountLbl = findViewById(R.id.questionsCountLbl);
-
-        scoreLbl.setText(Question.getScore() + "");
-
-        try {
-            questionList = generateQuestionsList();
-            Collections.shuffle(questionList);
-        } catch (XmlPullParserException | IOException e) {
-            e.printStackTrace();
-        }
-
-        int count = questionList.size();
-        Question.setQuestionCount(count);
-
-        updateQuestion();
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")
             @Override
@@ -58,43 +41,28 @@ public class QuestionsActivity extends AppCompatActivity {
                 if(i > 0) answerBtn.setVisibility(View.VISIBLE);
             }
         });
-    }
+        scoreLbl = findViewById(R.id.scoreLbl);
+        questionsCountLbl = findViewById(R.id.questionsCountLbl);
 
-    protected void updateQuestion() {
-        currentQuestion = questionList.get(Question.getQuestionIndex());
-
-        statementText.setText(currentQuestion.getStatement());
-        int rdoCount = radioGroup.getChildCount();
-        for (int i=0; i < rdoCount; i++) {
-            RadioButton rdoBtn = (RadioButton) radioGroup.getChildAt(i);
-            rdoBtn.setText(currentQuestion.getAlternative(i));
+        // DATA
+        try {
+            questionList = generateQuestionsList();
+            Collections.shuffle(questionList);
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
         }
+        int count = questionList.size();
+        Question.resetQuestions(); // reset score, index and count
+        Question.setQuestionCount(count);
+        updateQuestion();
 
-        questionsCountLbl.setText(Question.getQuestionIndex(1) + "/" + Question.getQuestionCount());
-        Question.increaseIndex();
+        // RENDERING
+        scoreLbl.setText(Question.getScore() + "");
 
-        radioGroup.clearCheck();
-        answerBtn.setVisibility(View.GONE);
-    }
-
-    protected void checkAnswer(){
-        RadioButton checkedRdo = (RadioButton) radioGroup.getChildAt(currentQuestion.getAnswerIndex());
-
-        if(checkedRdo.isChecked()){
-            Question.increaseScore();
-            scoreLbl.setText(Question.getScore() + "");
-            System.out.println("SCORE: "+ Question.getScore());
-        }
-    }
-
-    protected void endGame(){
-        /* TODO: endGame and learn animations */
-        System.out.println("End game!");
-        // Intent it = new Intent()
     }
 
     protected ArrayList<Question> generateQuestionsList() throws XmlPullParserException, IOException {
-        ArrayList<Question> questionList = new ArrayList<>();
+        ArrayList<Question> provisoryQuestionList = new ArrayList<>();
         String tagName;
         String statement;
         int correctAnswer;
@@ -130,13 +98,13 @@ public class QuestionsActivity extends AppCompatActivity {
                                     alternatives[2],
                                     correctAnswer);
 
-                    questionList.add(q);
+                    provisoryQuestionList.add(q);
                 }
             }
 
             parser.next();
         }
-        return questionList;
+        return provisoryQuestionList;
     }
 
     public void handleClick(View view) {
@@ -146,5 +114,38 @@ public class QuestionsActivity extends AppCompatActivity {
             return;
         }
         updateQuestion();
+    }
+
+    protected void checkAnswer(){
+        RadioButton checkedRdo = (RadioButton) radioGroup.getChildAt(currentQuestion.getAnswerIndex());
+
+        if(checkedRdo.isChecked()){
+            Question.increaseScore();
+            scoreLbl.setText(Question.getScore() + "");
+            System.out.println("SCORE: "+ Question.getScore());
+        }
+    }
+
+    protected void updateQuestion() {
+        currentQuestion = questionList.get(Question.getQuestionIndex());
+
+        statementText.setText(currentQuestion.getStatement());
+        int rdoCount = radioGroup.getChildCount();
+        for (int i=0; i < rdoCount; i++) {
+            RadioButton rdoBtn = (RadioButton) radioGroup.getChildAt(i);
+            rdoBtn.setText(currentQuestion.getAlternative(i));
+        }
+
+        questionsCountLbl.setText(Question.getQuestionIndex(1) + "/" + Question.getQuestionCount());
+        Question.increaseIndex();
+
+        radioGroup.clearCheck();
+        answerBtn.setVisibility(View.GONE);
+    }
+
+    protected void endGame(){
+        Intent it = new Intent(this, EndGameActivity.class);
+        startActivity(it);
+        finish();
     }
 }
