@@ -5,7 +5,7 @@
 
 # About the project 💡
 
-Android quiz game developed for the mobile programing classes of my technical course. After 2 bimesters I could practice what I´ve learned about Java and Android concepts.
+Android quiz game developed for the mobile programing classes of my technical course. After 2 bimesters I could practice what I´ve learned about Java and Android concepts. It´s my first real android project, and marks a new phase on which I´m moving to android native development. My future goals are to develop myself in the area and find out what better pleases me! 
 
 ## Screenshots 📸
 
