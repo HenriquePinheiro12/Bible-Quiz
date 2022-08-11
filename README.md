@@ -1,6 +1,6 @@
 <div align="center"> 
     <h1>Bible Quiz ✝️</h1>
-    <img src="./app/src/main/res/drawable/bible_icon.png">
+    <img src="./app/src/main/res/drawable/bible_icon.png" width="150">
 </div>
 
 # About the project 💡
@@ -10,9 +10,9 @@ Android quiz game developed for the mobile programing classes of my technical co
 ## Screenshots 📸
 
 <div align="center">
-    <img src="./app/src/main/res/drawable/screenshot1.jpg">
-    <img src="./app/src/main/res/drawable/screenshot2.jpg">
-    <img src="./app/src/main/res/drawable/screenshot3.jpg">
+    <img src="./app/src/main/res/drawable/screenshot1.jpg" width="200">
+    <img src="./app/src/main/res/drawable/screenshot2.jpg" width="200">
+    <img src="./app/src/main/res/drawable/screenshot3.jpg" width="200">
 </div>
 
 ## What I learned 📖
