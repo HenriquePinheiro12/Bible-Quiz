@@ -1,7 +1,5 @@
 package com.example.biblequizz;
 
-import static com.example.biblequizz.R.color.*;
-
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,7 +14,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class QuestionsActivity extends AppCompatActivity {
     // layout
@@ -28,7 +25,6 @@ public class QuestionsActivity extends AppCompatActivity {
     ArrayList<Question> questionList;
     Question currentQuestion;
     boolean questionIsChecked = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

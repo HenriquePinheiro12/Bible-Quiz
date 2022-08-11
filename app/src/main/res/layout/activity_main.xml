@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Bible Quizz"
+        android:text="Bible Quiz"
         android:textColor="#9C27B0"
         android:textSize="40sp"
         android:textStyle="bold"
