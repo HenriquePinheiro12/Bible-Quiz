@@ -1,12 +1,10 @@
 package com.example.biblequizz;
 
-
-import android.content.res.Resources;
-
 public class Question {
-
-
     public Question (String stt, String alt1, String alt2, String alt3,int answerI) {
+        score = 0;
+        questionIndex = 0;
+
         this.alternatives = new String[3];
 
         this.statement = stt;
@@ -17,19 +15,30 @@ public class Question {
         this.answerIndex = answerI;
     }
 
-    public String statement;
-    public String[] alternatives;
-    public int answerIndex;
-    private static int score = 0;
+    private String statement;
+    private String[] alternatives;
+    private int answerIndex;
+    private static int score;
+    private static int questionIndex;
+    private static int questionCount;
 
+    public String getStatement() { return this.statement; }
+    public String getAlternative(int i) { return this.alternatives[i]; }
+    public int getAnswerIndex () { return this.answerIndex; }
 
     public static void increaseScore() {
         score++;
     }
-
     public static int getScore(){
         return score;
     }
+
+    public static void increaseIndex() { questionIndex++; }
+    public static int getQuestionIndex() { return questionIndex; }
+    public static int getQuestionIndex(int increaser) { return questionIndex + increaser; }
+
+    public static int getQuestionCount() { return questionCount; }
+    public static void setQuestionCount(int c){ questionCount = c; }
 }
 
 

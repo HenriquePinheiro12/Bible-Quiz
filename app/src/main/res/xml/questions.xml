@@ -40,4 +40,54 @@
         <Alternative text="Egito"/>
         <Alternative text="Síria"/>
     </Question>
+    <Question statement="Quem foi pai de Isaias?" correctIndex="1">
+        <Alternative text="Acaz"/>
+        <Alternative text="Amós"/>
+        <Alternative text="Uzias"/>
+    </Question>
+    <Question statement="Qual é a primeira igreja da Ásia Menor citada por João no livro de Apocalipse?" correctIndex="2">
+        <Alternative text="Igreja de Pérgamo"/>
+        <Alternative text="Igreja de Laodicéia"/>
+        <Alternative text="Igreja de Éfeso"/>
+    </Question>
+    <Question statement="Quantos animais Daniel vê na visão do capítulo 7 de seu livro?" correctIndex="1">
+        <Alternative text="2 animais"/>
+        <Alternative text="4 animais"/>
+        <Alternative text="7 animais"/>
+    </Question>
+    <Question statement="Qual profeta teve os lábios purificados por Deus?" correctIndex="0">
+        <Alternative text="Isaias"/>
+        <Alternative text="Oséias"/>
+        <Alternative text="Ezequiel"/>
+    </Question>
+    <Question statement="Quantos anciãos foram vistos na assembléia celestial em Apocalipse 4?" correctIndex="2">
+        <Alternative text="7 anciãos"/>
+        <Alternative text="12 anciãos"/>
+        <Alternative text="24 anciãos"/>
+    </Question>
+    <Question statement="João e Tiago eram filhos de quem?" correctIndex="0">
+        <Alternative text="Zebedeu"/>
+        <Alternative text="José"/>
+        <Alternative text="Ezequias"/>
+    </Question>
+    <Question statement="Quantos livros a Bíblia possui?" correctIndex="2">
+        <Alternative text="40 livros"/>
+        <Alternative text="54 livros"/>
+        <Alternative text="66 livros"/>
+    </Question>
+    <Question statement="Qual apóstolo foi escolhido para substituir Judas Iscariótes?" correctIndex="2">
+        <Alternative text="Bartolomeu"/>
+        <Alternative text="Tadeu"/>
+        <Alternative text="Matias"/>
+    </Question>
+    <Question statement="Qual era a capital do reino de Israel?" correctIndex="1">
+        <Alternative text="Jerusalém"/>
+        <Alternative text="Samaria"/>
+        <Alternative text="Judá"/>
+    </Question>
+    <Question statement="Quantos capítulos possui o livro de Jeremias?" correctIndex="1">
+        <Alternative text="49 capítulos"/>
+        <Alternative text="52 capítulos"/>
+        <Alternative text="60 capítulos"/>
+    </Question>
 </Questions>

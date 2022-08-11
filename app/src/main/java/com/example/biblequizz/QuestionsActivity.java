@@ -2,6 +2,7 @@ package com.example.biblequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.View;
@@ -11,19 +12,18 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class QuestionsActivity extends AppCompatActivity {
     // layout
     Button answerBtn;
-    TextView statementText, scoreLbl;
+    TextView statementText, scoreLbl, questionsCountLbl;
     RadioGroup radioGroup;
 
     ArrayList<Question> questionList;
-    private int QUESTIONS_COUNT;
-
     Question currentQuestion;
-    private int questionIndex = 0;
 
 
     @Override
@@ -35,16 +35,19 @@ public class QuestionsActivity extends AppCompatActivity {
         statementText = findViewById(R.id.statementText);
         radioGroup = findViewById(R.id.radioGroup);
         scoreLbl = findViewById(R.id.scoreLbl);
+        questionsCountLbl = findViewById(R.id.questionsCountLbl);
 
         scoreLbl.setText(Question.getScore() + "");
 
         try {
             questionList = generateQuestionsList();
+            Collections.shuffle(questionList);
         } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
 
-        QUESTIONS_COUNT = questionList.size();
+        int count = questionList.size();
+        Question.setQuestionCount(count);
 
         updateQuestion();
 
@@ -52,40 +55,42 @@ public class QuestionsActivity extends AppCompatActivity {
             @SuppressLint("ResourceType")
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i > 0) {
-                    answerBtn.setVisibility(View.VISIBLE);
-                }
+                if(i > 0) answerBtn.setVisibility(View.VISIBLE);
             }
         });
     }
 
     protected void updateQuestion() {
-        currentQuestion = questionList.get(questionIndex);
+        currentQuestion = questionList.get(Question.getQuestionIndex());
 
-        statementText.setText(currentQuestion.statement);
+        statementText.setText(currentQuestion.getStatement());
         int rdoCount = radioGroup.getChildCount();
         for (int i=0; i < rdoCount; i++) {
             RadioButton rdoBtn = (RadioButton) radioGroup.getChildAt(i);
-            rdoBtn.setText(currentQuestion.alternatives[i]);
+            rdoBtn.setText(currentQuestion.getAlternative(i));
         }
-        questionIndex++;
+
+        questionsCountLbl.setText(Question.getQuestionIndex(1) + "/" + Question.getQuestionCount());
+        Question.increaseIndex();
 
         radioGroup.clearCheck();
         answerBtn.setVisibility(View.GONE);
     }
 
     protected void checkAnswer(){
-        RadioButton checkedRdo = ( RadioButton) radioGroup.getChildAt(currentQuestion.answerIndex);
+        RadioButton checkedRdo = (RadioButton) radioGroup.getChildAt(currentQuestion.getAnswerIndex());
 
         if(checkedRdo.isChecked()){
             Question.increaseScore();
             scoreLbl.setText(Question.getScore() + "");
+            System.out.println("SCORE: "+ Question.getScore());
         }
     }
 
     protected void endGame(){
         /* TODO: endGame and learn animations */
         System.out.println("End game!");
+        // Intent it = new Intent()
     }
 
     protected ArrayList<Question> generateQuestionsList() throws XmlPullParserException, IOException {
@@ -131,14 +136,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
             parser.next();
         }
-
-
         return questionList;
     }
 
     public void handleClick(View view) {
         checkAnswer();
-        if(questionIndex == QUESTIONS_COUNT){
+        if(Question.getQuestionIndex() == Question.getQuestionCount()){
             endGame();
             return;
         }
